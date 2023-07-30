@@ -33,7 +33,10 @@ class PS4_controller(object):
     def run(self):
         while not rospy.is_shutdown():
             self.publish_joy()
-            self.rate.sleep()
+            try:
+                self.rate.sleep()
+            except rospy.exceptions.ROSTimeMovedBackwardsException:
+                pass
 
     def callback(self, msg):
         if self.use_button:

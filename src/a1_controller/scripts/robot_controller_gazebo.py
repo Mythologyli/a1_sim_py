@@ -70,4 +70,7 @@ while not rospy.is_shutdown():
     except:
         pass
 
-    rate.sleep()
+    try:
+        rate.sleep()
+    except rospy.exceptions.ROSTimeMovedBackwardsException:
+        pass
